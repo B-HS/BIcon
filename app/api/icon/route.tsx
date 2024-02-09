@@ -2,7 +2,7 @@ import { PROPERTIES, PropertyMap } from '@/lib/constant'
 import { headers } from 'next/headers'
 import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
-
+export const runtime = 'edge'
 export const GET = async (request: NextRequest) => {
     const headersList = headers()
     const domain = headersList.get('x-forwarded-host')
