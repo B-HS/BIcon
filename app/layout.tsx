@@ -19,7 +19,9 @@ export const metadata = {
         url: 'https://bicon.gumyo.net',
         images: [
             {
-                url: 'https://bicon.gumyo.net/bicon.png',
+                url: 'https://bicon.gumyo.net/logo.png',
+                width: 800,
+                height: 600,
             },
         ],
         type: 'website',
