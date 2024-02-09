@@ -3,6 +3,31 @@ import { Toaster } from '@/components/ui/toaster'
 import Image from 'next/image'
 import Link from 'next/link'
 import './globals.css'
+
+export const metadata = {
+    metadataBase: new URL('https://bicon.gumyo.net'),
+    title: 'BIcon',
+    description: 'Generate Badge icon easily',
+    authors: [{ name: 'Hyunseok Byun', url: 'https://github.com/B-HS' }],
+    icons: {
+        icon: '/favicon.ico',
+    },
+    openGraph: {
+        title: 'BIcon',
+        description: 'Generate Badge icon easily',
+        siteName: 'BIcon',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'BIcon',
+        description: 'Generate Badge icon easily',
+        creator: 'Hyunseok Byun',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+}
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -22,12 +47,12 @@ export default function RootLayout({
                     <Separator />
                     <section className='flex justify-between w-full'>
                         <section></section>
-                        <section className='flex gap-2 items-center'>
-                            <span>B-HS</span>
-                            <Link href='https://github.com/B-HS'>
+                        <Link href='https://github.com/B-HS'>
+                            <section className='flex gap-2 items-center'>
+                                <span>B-HS</span>
                                 <Image src={'/github.svg'} width={20} height={20} alt={'github'} priority={false} />
-                            </Link>
-                        </section>
+                            </section>
+                        </Link>
                     </section>
                 </section>
                 <Toaster />
