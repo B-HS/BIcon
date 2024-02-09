@@ -49,6 +49,7 @@ export const GET = async (request: NextRequest) => {
                         alignItems: 'center',
                     }}
                 >
+                    {/* eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element */}
                     <img
                         src={props.icon}
                         style={{
