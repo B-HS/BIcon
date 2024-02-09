@@ -16,6 +16,13 @@ export const metadata = {
         title: 'BIcon',
         description: 'Generate Badge icon easily',
         siteName: 'BIcon',
+        url: 'https://bicon.gumyo.net',
+        images: [
+            {
+                url: 'https://bicon.gumyo.net/bicon.png',
+            },
+        ],
+        type: 'website',
     },
     twitter: {
         card: 'summary',
