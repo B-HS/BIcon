@@ -5,7 +5,7 @@ import Link from 'next/link'
 import './globals.css'
 
 export const metadata = {
-    metadataBase: new URL('https://bicon.gumyo.net'),
+    metadataBase: new URL('https://bicon.gumyo.net/'),
     title: 'BIcon',
     description: 'Generate Badge icon easily',
     authors: [{ name: 'Hyunseok Byun', url: 'https://github.com/B-HS' }],
@@ -17,13 +17,6 @@ export const metadata = {
         description: 'Generate Badge icon easily',
         siteName: 'BIcon',
         url: 'https://bicon.gumyo.net',
-        images: [
-            {
-                url: 'https://bicon.gumyo.net/bicon.png',
-                width: 800,
-                height: 600,
-            },
-        ],
         type: 'website',
     },
     twitter: {
