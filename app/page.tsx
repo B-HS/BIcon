@@ -8,6 +8,39 @@ import { useToast } from '@/components/ui/use-toast'
 import { PROPERTIES, presetIcon } from '@/lib/constant'
 import Image from 'next/image'
 import { useState } from 'react'
+export const metadata = {
+    metadataBase: new URL('https://bicon.gumyo.net'),
+    title: 'BIcon',
+    description: 'Generate Badge icon easily',
+    authors: [{ name: 'Hyunseok Byun', url: 'https://github.com/B-HS' }],
+    icons: {
+        icon: '/favicon.ico',
+    },
+    openGraph: {
+        title: 'BIcon',
+        description: 'Generate Badge icon easily',
+        siteName: 'BIcon',
+        url: 'https://bicon.gumyo.net',
+        images: [
+            {
+                url: 'https://bicon.gumyo.net/bicon.png',
+                width: 800,
+                height: 600,
+            },
+        ],
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'BIcon',
+        description: 'Generate Badge icon easily',
+        creator: 'Hyunseok Byun',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+}
 
 const Home = () => {
     const [formValues, setFormValues] = useState<Record<string, string>>({})
