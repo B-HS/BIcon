@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useToast } from '@/components/ui/use-toast'
 import { PROPERTIES, presetIcon } from '@/lib/constant'
+import { Cross1Icon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -79,6 +80,20 @@ const Home = () => {
                             <section className='flex items-center pb-1 gap-1'>
                                 {property.required && <span className='text-red-500'>*</span>}
                                 <Label htmlFor={propertyName}>{property.name}</Label>
+                                {property.type === 'select' && formValues['icon'] && (
+                                    <Button
+                                        onClick={() =>
+                                            setFormValues((prev) => {
+                                                delete prev['icon']
+                                                return {...prev}
+                                            })
+                                        }
+                                        variant={'link'}
+                                        className='p-0 size-fit'
+                                    >
+                                        <Cross1Icon />
+                                    </Button>
+                                )}
                             </section>
                             {property.type !== 'select' && (
                                 <Input
@@ -93,6 +108,7 @@ const Home = () => {
                             )}
                             {property.type === 'select' && (
                                 <Select
+                                    value={formValues['propertyName'] || ''}
                                     onValueChange={(name) => handleInputChange({ target: { value: name } } as any, propertyName)}
                                     disabled={!formValues.width || !formValues.height}
                                 >
@@ -120,12 +136,12 @@ const Home = () => {
             <Card>
                 <CardContent className='p-6 h-full flex justify-center items-center select-none gap-10'>
                     <section className='flex-1 flex justify-center items-center w-full'>
-                        {formValues.icon || formValues.icon ? (
+                        {formValues.cIcon || formValues.icon || formValues.icon ? (
                             <Image
-                                src={'/api/icon?' + new URLSearchParams(formValues).toString()}
+                                src={formValues.cIcon || '/api/icon?' + new URLSearchParams(formValues).toString()}
                                 width={Number(formValues.width)}
                                 height={Number(formValues.height)}
-                                alt={formValues.icon}
+                                alt={formValues.icon || 'custom-icon'}
                                 quality={100}
                             />
                         ) : (

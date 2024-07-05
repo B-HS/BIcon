@@ -2,6 +2,7 @@ import { PROPERTIES, PropertyMap } from '@/lib/constant'
 import { headers } from 'next/headers'
 import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
+
 export const runtime = 'edge'
 export const GET = async (request: NextRequest) => {
     const headersList = headers()
@@ -21,9 +22,25 @@ export const GET = async (request: NextRequest) => {
         textColor: textColor ? textColor : '#000',
         iconBgColor: iconBgColor ? iconBgColor : 'transparent',
         text: text || '',
-        icon: cIcon || `${currentURL}/${icon}.svg` || `${currentURL}/logo.svg`,
+        icon: cIcon ? cIcon : `${currentURL}/${icon}.svg` || `${currentURL}/logo.svg`,
         borderRadius: (Number(borderRadius) || 0) + 'px',
     }
+
+    const fetchSvgContent = async (url: string) => {
+        const response = await fetch(url)
+        let svgContent = await response.text()
+        if (!/viewBox="[^"]+"/.test(svgContent)) {
+            const widthMatch = svgContent.match(/width="([^"]+)"/)
+            const heightMatch = svgContent.match(/height="([^"]+)"/)
+            const width = widthMatch ? widthMatch[1] : '100'
+            const height = heightMatch ? heightMatch[1] : '100'
+            const viewBox = `viewBox="0 0 ${width} ${height}"`
+            svgContent = svgContent.replace(/<svg([^>]*)>/, `<svg$1 ${viewBox}>`)
+        }
+        return 'data:image/svg+xml;base64,' + Buffer.from(svgContent).toString('base64')
+    }
+
+    cIcon && (props.icon = await fetchSvgContent(cIcon))
 
     return new ImageResponse(
         (
